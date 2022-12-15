@@ -48,11 +48,11 @@ def photo(update: Update, context: CallbackContext) -> int:
         # predictions = model.torch.max(outputs)
         std = model.torch.std(outputs)
         predictions = model.torch.argmax(outputs)
-        if(std > 8 and predictions == group.p_class):
+        if(std > 6.5 and predictions == group.p_class):
             update.message.reply_text(f'Yeah! Thats exactly what I was looking for!')
             update.message.reply_text(f'You won this round, {user.name}.')
             group.playing = False
-        elif(std > 6.5):
+        elif(std > 5):
             update.message.reply_text(f'I am not sure if this is a {model.classes[group.p_class]}.')
         else:
             update.message.reply_text("What is this?")
